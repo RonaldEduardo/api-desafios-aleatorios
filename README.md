@@ -1,66 +1,48 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+Desafio Técnico: API de Desafios Aleatórios
+Este projeto consiste em uma API desenvolvida em Laravel para fornecer desafios aleatórios ao usuário. Abaixo estão as tarefas e requisitos para melhorar a API, implementar boas práticas e realizar testes de funcionalidade.
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Objetivo
+Implementar uma API que forneça desafios aleatórios para o usuário.
+Aplicar boas práticas de desenvolvimento, incluindo organização de rotas, arquitetura REST e tratamento de erros.
+Utilizar um banco de dados MongoDB para armazenar e gerenciar desafios de forma dinâmica.
+Requisitos de Implementação
+1. Configuração Básica
+ Configure um banco de dados MongoDB com uma coleção desafios.
+ Insira alguns desafios de exemplo no banco de dados, cada um com os campos id, titulo, descricao, nivel (iniciante, intermediário, avançado) e categoria.
+2. Estrutura das Rotas
+Crie as seguintes rotas RESTful para gerenciar e obter desafios:
 
-## About Laravel
+Rotas para Operações CRUD (Desafios)
+GET /api/desafios
+Retorna uma lista de todos os desafios disponíveis.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+POST /api/desafios
+Permite a criação de um novo desafio. Valide os dados para garantir que titulo, descricao, nivel e categoria estão presentes e possuem valores aceitáveis.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+PUT /api/desafios/{id}
+Atualiza um desafio existente baseado em seu id. Certifique-se de validar os dados recebidos.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+DELETE /api/desafios/{id}
+Remove um desafio específico pelo id.
 
-## Learning Laravel
+Rota para Desafio Aleatório
+GET /api/desafios/aleatorio
+Retorna um desafio aleatório da coleção desafios. Considere aplicar filtros de nivel ou categoria usando parâmetros de query (opcional).
+3. Boas Práticas de Desenvolvimento
+ Divisão de responsabilidades: Coloque a lógica de negócios no controlador DesafioController e utilize serviços ou repositórios se necessário para separar o acesso ao banco de dados.
+ Validação de Dados: Utilize Form Request Validation do Laravel para validar as entradas nas rotas POST e PUT.
+ Tratamento de Erros: Implemente tratamento de erros para garantir que respostas adequadas sejam retornadas em caso de dados inválidos ou falha ao acessar o banco de dados.
+ Organização das Rotas: Use o agrupamento de rotas com prefixo desafios para manter o código limpo e organizado.
+ Documentação: Documente as rotas usando um padrão, como OpenAPI, para facilitar o entendimento e uso da API.
+4. Testes
+Implemente testes automatizados para garantir que a API funcione corretamente:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+ Testes de Unidade: Crie testes para validar a lógica dos métodos no DesafioController.
+ Testes de Integração: Implemente testes para garantir que a API retorne os dados corretos ao acessar o MongoDB.
+ Testes de API com HTTP: Teste as rotas principais (/desafios, /desafios/aleatorio, etc.) para validar respostas esperadas e tratamento de erros.
+5. Extra: Melhorias Adicionais
+Implemente as seguintes melhorias para um projeto mais robusto:
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+ Filtros e Paginação: Adicione parâmetros de query para filtrar desafios por nivel ou categoria, e implemente paginação na rota GET /api/desafios.
+ Autenticação Básica: Proteja as rotas de criação, atualização e exclusão usando autenticação baseada em token (JWT ou Laravel Sanctum).
+ Cache: Implemente cache para a rota /api/desafios/aleatorio para melhorar o desempenho em caso de acessos frequentes.
